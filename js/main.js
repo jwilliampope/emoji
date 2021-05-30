@@ -3,11 +3,11 @@ const emojiContainer = document.getElementById("emoji-container")
 const emojiInput = document.getElementById("emoji-input")
 const pushBtn = document.getElementById("push-btn")
 const unshiftBtn = document.getElementById("unshift-btn")
+const popBtn = document.getElementById("pop-btn")
 const shiftBtn = document.getElementById("shift-btn")
 
 function renderEmojis() {
-  emojiContainer.textContent = ""
-
+  emojiContainer.innerHTML = ""
   for (myEmoji of myEmojis) {
     const emoji = document.createElement("span")
     emoji.textContent = myEmoji
@@ -18,7 +18,6 @@ function renderEmojis() {
 renderEmojis()
 
 pushBtn.addEventListener("click", () => {
-  const emojiInput = document.getElementById("emoji-input")
   if (emojiInput.value) {
     myEmojis.push(emojiInput.value)
     emojiInput.value = ""
@@ -34,16 +33,12 @@ unshiftBtn.addEventListener("click", () => {
   }
 })
 
-shiftBtn.addEventListener("click", () => {
-  myEmojis.shift(emojiInput.value)
-  emojiContainer.textContent = ""
+popBtn.addEventListener("click", () => {
+  myEmojis.pop()
   renderEmojis()
 })
 
-const popBtn = document.getElementById("pop-btn")
-popBtn.addEventListener("click", () => {
-  const emojiInput = document.getElementById("emoji-input")
-  myEmojis.pop(emojiInput.value)
-  emojiContainer.textContent = ""
+shiftBtn.addEventListener("click", () => {
+  myEmojis.shift()
   renderEmojis()
 })
